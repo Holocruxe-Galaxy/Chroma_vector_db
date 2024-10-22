@@ -31,6 +31,15 @@ def insert_data():
         return create_response(f"Error: {e}", 500)
 
 
+@app.route('/delete_all_data', methods=['DELETE'])
+def delete_all_data():
+    try:
+        db_client.delete_all_data()
+        return create_response("¡Los datos fueron eliminados exitosamente!", 200)
+    except:
+        print('An exception occurred')
+
+
 @app.route('/similarity_calculation', methods=['POST'])
 def search_data():
     try:
@@ -48,4 +57,4 @@ def search_data():
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host='0.0.0.0', port=3000)
